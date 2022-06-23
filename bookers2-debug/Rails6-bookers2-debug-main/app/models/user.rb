@@ -4,15 +4,25 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
   has_many :books, dependent: :destroy
   has_one_attached :profile_image
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
 
+  # has_many :xxx, class_name: "relationship", foreign_key: "follower_id", dependent: :destroy
+  # has_many :yyy, through: :xxx, source: :zzz
+
+  has_many :relationship, foreign_key: follower_id
+  has_many :yyy, through: :relationship, source: :zzz
+
+  has_many :reverse_of_relationship, class_name: 'Relationship',foreign_key: followed_id
+  has_many :zzz, through: :reverse_of_relationship, source: :yyy
+
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: {maximum: 50}
+
+
 
   # def get_profile_image
   #   (profile_image.attached?) ? profile_image : 'no_image.jpg'
