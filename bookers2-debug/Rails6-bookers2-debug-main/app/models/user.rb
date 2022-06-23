@@ -13,10 +13,10 @@ class User < ApplicationRecord
   # has_many :yyy, through: :xxx, source: :zzz
 
   has_many :relationship, foreign_key: follower_id
-  has_many :yyy, through: :relationship, source: :zzz
+  has_many :followers, through: :relationship, source: :followed
 
   has_many :reverse_of_relationship, class_name: 'Relationship',foreign_key: followed_id
-  has_many :zzz, through: :reverse_of_relationship, source: :yyy
+  has_many :followeds, through: :reverse_of_relationship, source: :follower
 
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
