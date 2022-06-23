@@ -12,11 +12,14 @@ class User < ApplicationRecord
   # has_many :xxx, class_name: "relationship", foreign_key: "follower_id", dependent: :destroy
   # has_many :yyy, through: :xxx, source: :zzz
 
-  has_many :relationship, foreign_key: follower_id
-  has_many :followers, through: :relationship, source: :followed
+  has_many :relationships, foreign_key: follower_id
+  has_many :followers, through: :relationships, source: :followed
 
-  has_many :reverse_of_relationship, class_name: 'Relationship',foreign_key: followed_id
-  has_many :followeds, through: :reverse_of_relationship, source: :follower
+  has_many :reverse_of_relationships, class_name: 'Relationship',foreign_key: followed_id
+  has_many :followeds, through: :reverse_of_relationships, source: :follower
+
+  def is_followed_by?(user)
+    reverse_of_relationships.find_by(follower_id: user.id).present?
 
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
