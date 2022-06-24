@@ -6,12 +6,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    @users = User.where.not(id: current_user.id)
   end
 
   def index
-    @users = User.all
+    # @users = User.all
     @book = Book.new
-    @usersf = User.where.not(id: current_user.id)
+    @users = User.where.not(id: current_user.id)
   end
 
   def edit
