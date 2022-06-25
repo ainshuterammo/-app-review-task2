@@ -9,16 +9,16 @@
             <th></th>
         </tr>
     </thead>
-    <tbody id="post">
-    <% posts.each do |post| %>
+    <tbody id="book">
+    <% books.each do |post| %>
       <tr>
-        <td><%= post.user.name %></td>
-        <td><%= post.title %></td>
-        <td><%= post.body %></td>
-        <td><%= link_to "詳細", post_path(post) %></td>
+        <td><%= book.user.name %></td>
+        <td><%= book.title %></td>
+        <td><%= book.body %></td>
+        <td><%= link_to "詳細", post_path(book) %></td>
         <% if post.user == current_user %>
-          <td><%= link_to "編集", edit_post_path(post) %></td>
-          <td><%= link_to "削除", post_path(post), method: :delete, remote: true %></td>
+          <td><%= link_to "編集", edit_post_path(book) %></td>
+          <td><%= link_to "削除", book_path(book), method: :delete, remote: true %></td>
         <% else %>
           <td></td>
           <td></td>

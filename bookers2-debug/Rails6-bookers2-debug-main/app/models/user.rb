@@ -39,6 +39,14 @@ class User < ApplicationRecord
   #   followings.include?(user)
   # end
 
+  def self.looks(searches, words)
+    if searches == "perfect_match"
+      @user = User.where("name LIKE ?", "#{words}")
+    else
+      @user = User.where("name LIKE ?", "%#{words}%")
+    end
+  end
+
 
 
   def is_followed_by?(user)
@@ -47,6 +55,7 @@ class User < ApplicationRecord
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: {maximum: 50}
+
 
 
 
