@@ -47,7 +47,7 @@ class User < ApplicationRecord
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
-  
+
   def follow(user)
     relationships.create(followed_id: user.id)
   end
