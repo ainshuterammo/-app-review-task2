@@ -1,7 +1,4 @@
-<%= form_with(model:[book, book_comment], local: true) do |f| %>
-  <div id="book_comments-error">
-    <%= render 'layouts/error_messages', model: f.object %>
-  </div>
-  <%= f.text_area :book_comment, rows:'5',placeholder: "コメントをここに", class: "w-100" %>
+<%= form_with(model:[book, book_comment], local: false) do |f| %>
+  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100 comment-textarea" %>
   <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
 <% end %>

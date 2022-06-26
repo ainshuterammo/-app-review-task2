@@ -1,1 +1,2 @@
-$('#favorite_buttons_<%= @book1.id %>').html("<%= j(render "book_comments/index", book: @book1) %>");
+$('.book-comments-counter').html("<%= j(render 'book_comments/counter', book: @comment.book) %>")
+$('.book-comments-index').html("<%= j(render 'book_comments/index', book: @comment.book) %>")

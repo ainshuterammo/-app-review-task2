@@ -50,11 +50,14 @@
           <% end %>
         </tr>
 
-        <div class="new-comment"><%= render 'book_comments/index', book: @book, book_comment: @book_comment %></div>
+        <div class="book-comments-index">
+        <%= render "book_comments/index", book: @book %>
+        </div>
+
         <div>
           <tr>
             <td>
-              <div id="comments-area"><%= render "book_comments/form",books: @book,book_comment: @book_comment %></div>
+              <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
             </td>
           </tr>
         </div>
